@@ -2,10 +2,20 @@
 
 namespace Engine\Core;
 
+use Application\Book;
+use Engine\Application;
+use Engine\Router\IRouter;
+use League\Route\Router;
+
 class ApplicationFactory
 {
-    public function __construct(){
+    public function __construct(private IRouter $router){
 
+    }
+
+    public function create(Book $book){
+        $router = new Router();
+        return new Application($book, $this->router, $router);
     }
 
 }
