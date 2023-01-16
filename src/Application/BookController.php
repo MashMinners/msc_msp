@@ -3,7 +3,6 @@
 namespace Application;
 
 use Laminas\Diactoros\Response;
-use Laminas\Diactoros\ServerRequest;
 
 class BookController
 {
