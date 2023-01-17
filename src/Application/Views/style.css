@@ -1,0 +1,22 @@
+body {
+    padding-top: 4.2rem;
+}
+
+h1 {
+    margin-top: 0
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.app-content {
+    background-color: red;
+    color: blue;
+}
+
+.app-footer {
+    padding-bottom: 1em;
+}

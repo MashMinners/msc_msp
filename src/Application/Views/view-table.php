@@ -4,8 +4,9 @@
     <thead></thead>
     <tbody>
         <tr>
-            <td></td>
-            <td></td>
+            <td>12</td>
+            <td>34</td>
+            <td>56</td>
         </tr>
     </tbody>
 </table>

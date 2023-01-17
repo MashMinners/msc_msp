@@ -6,5 +6,21 @@ namespace Application\Views;
 
 class View
 {
+    public function render($content=null): string
+    {
+        $layout = 'src/Application/Views/layout.php';
+        $templateFile = 'src/Application/Views/view-table.php';
+        $css = 'src/Application/Views/style.css';
+
+        try {
+            ob_start();
+            include $layout;
+            $content = ob_get_clean();
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        return $content;
+    }
 
 }

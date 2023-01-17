@@ -5,30 +5,26 @@ declare(strict_types=1);
 namespace Application\Controllers;
 
 use Application\Models\Model;
+use Application\Views\View;
 use Laminas\Diactoros\Response\HtmlResponse;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 
 class Controller
 {
-    public function __construct(private Model $model){
+    public function __construct(private Model $model, private View $view){
 
     }
 
     private function getHtmlRows(array $data){
-        $html ='';
-        foreach ($data as $singleRow){
-
-        }
-
+        $html =$this->view->render();
         return $html;
     }
 
     public function getRows() : ResponseInterface{
-        $result = $this->model->getFiveFirstLines();
-        //$result = json_encode($result);
-        //$response = new JsonResponse($result);
-        $html = $this->getHtmlRows($result);
+        $code = 'И060154';
+        $data = $this->model->getData($code);
+        $html = $this->getHtmlRows($data);
         $response = new HtmlResponse($html);
         return $response;
     }
