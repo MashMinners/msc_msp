@@ -13,11 +13,11 @@ class Model
     }
 
     public function getData(string $code){
-        $query = ("SELECT mc.FULLNAME 
-                    FROM mod_comp mc
-                    INNER JOIN mod_link ml on mc.CODE = ml.COMPCODE
-                    INNER JOIN mod_simp ms on ml.SIMPCODE = ms.CODE
-                    WHERE ms.CODE = :code");
+        $query = ("SELECT mod_link.COMPCODE, mod_link.SIMPCODE, mod_link.KOL, mod_link.PRIM, mod_comp.NAME, mod_simp.NAME
+                    FROM (mod_link 
+                    INNER JOIN mod_comp ON mod_link.COMPCODE = mod_comp.CODE) 
+                    INNER JOIN mod_simp ON mod_link.SIMPCODE = mod_simp.CODE
+                    WHERE (((mod_link.COMPCODE)=:code));");
         $stmt = $this->_db->prepare($query);
         $stmt->execute(['code' => $code]);
         $result = $stmt->fetchAll();

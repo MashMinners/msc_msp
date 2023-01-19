@@ -16,6 +16,7 @@
         "laminas/laminas-httphandlerrunner": "^2.4",
         "league/container": "^4.2",
         "php-di/php-di": "^7.0",
-      "ext-pdo": "*"
+        "ext-pdo": "*",
+        "mpdf/mpdf": "^8.1"
     }
 }

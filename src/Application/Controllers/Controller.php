@@ -7,8 +7,8 @@ namespace Application\Controllers;
 use Application\Models\Model;
 use Application\Views\View;
 use Laminas\Diactoros\Response\HtmlResponse;
-use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Controller
 {
@@ -16,14 +16,19 @@ class Controller
 
     }
 
-    private function getHtmlRows(array $data){
-        $html =$this->view->render();
+    private function getHtmlRows(array|null $data){
+        $html =$this->view->render($data);
         return $html;
     }
 
-    public function getRows() : ResponseInterface{
-        $code = 'И060154';
-        $data = $this->model->getData($code);
+    public function getRows(ServerRequestInterface $request) : ResponseInterface{
+        $code = $request->getQueryParams();
+        if (isset($code['code'])){
+            $code = $code['code'];
+            $data = $this->model->getData($code);
+        }else{
+            $data = null;
+        }
         $html = $this->getHtmlRows($data);
         $response = new HtmlResponse($html);
         return $response;

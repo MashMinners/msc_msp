@@ -1,5 +1,5 @@
 body {
-    padding-top: 4.2rem;
+
 }
 
 h1 {
@@ -13,10 +13,20 @@ h1 {
 }
 
 .app-content {
-    background-color: red;
-    color: blue;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .app-footer {
     padding-bottom: 1em;
+}
+table, th, td {
+    border: 1px solid #000000;
+    /*border: 1px solid #ffffff;*/
+    border-collapse: collapse;
+}
+th, td {
+    background-color: #ffffff;
+    /*background-color: #96D4D4;
+    border-radius: 15px;*/
 }
