@@ -1,5 +1,4 @@
-<style><?php include $css; ?></style>
-<table style="width: 100%;">
+<table>
     <thead>
         <tr>
             <th style="width: 5%">Применяемость</th>

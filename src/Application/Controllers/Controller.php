@@ -16,20 +16,26 @@ class Controller
 
     }
 
-    private function getHtmlRows(array|null $data){
-        $html =$this->view->render($data);
+    private function getHtml(string $template, array|null $data = null){
+        $html =$this->view->render($template, $data);
         return $html;
     }
 
-    public function getRows(ServerRequestInterface $request) : ResponseInterface{
-        $code = $request->getQueryParams();
-        if (isset($code['code'])){
-            $code = $code['code'];
+    public function get(ServerRequestInterface $request) : ResponseInterface {
+        $code = $request->getParsedBody()['code'];
+        if (isset($code)){
             $data = $this->model->getData($code);
-        }else{
+        }
+        else{
             $data = null;
         }
-        $html = $this->getHtmlRows($data);
+        $html = $this->getHtml('src/Application/Views/view-table.php',$data);
+        $response = new HtmlResponse($html);
+        return $response;
+    }
+
+    public function index(){
+        $html = $this->getHtml('src/Application/Views/view-query.php');
         $response = new HtmlResponse($html);
         return $response;
     }
