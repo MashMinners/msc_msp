@@ -15,8 +15,6 @@ $builder->addDefinitions($definitions);
 $container = $builder->build();
 
 $app = $container->get('Application');
-$app->get();
-$app->post();
 
 $request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals();
 $app->run($request);
