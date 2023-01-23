@@ -13,17 +13,29 @@ $definitions = require 'configs/dependencies.php';
 $builder = new \DI\ContainerBuilder();
 $builder->addDefinitions($definitions);
 $container = $builder->build();
-#2.3 Назначение стратегии приложения (для корректной работы контейнера)
-$strategy = (new League\Route\Strategy\ApplicationStrategy)->setContainer($container);
-#3. Создание роутера
-/** @var \League\Route\Router $router */
-$router = (new League\Route\Router)->setStrategy($strategy);
-/** @var \League\Route\Route $route */
-#3.1 Назначение роутов
-require 'configs/routes.php';
 
+$app = $container->get('Application');
+$app->get();
+$app->post();
 
 $request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals();
-$response = $router->dispatch($request);
-$emitter = new \Laminas\HttpHandlerRunner\Emitter\SapiStreamEmitter();
-$emitter->emit($response);
+$app->run($request);
+
+
+
+
+
+#2.3 Назначение стратегии приложения (для корректной работы контейнера)
+//$strategy = (new League\Route\Strategy\ApplicationStrategy)->setContainer($container);
+#3. Создание роутера
+/** @var \League\Route\Router $router */
+//$router = (new League\Route\Router)->setStrategy($strategy);
+/** @var \League\Route\Route $route */
+#3.1 Назначение роутов
+//require 'configs/routes.php';
+
+
+//$request = \Laminas\Diactoros\ServerRequestFactory::fromGlobals();
+//$response = $router->dispatch($request);
+//$emitter = new \Laminas\HttpHandlerRunner\Emitter\SapiStreamEmitter();
+//$emitter->emit($response);

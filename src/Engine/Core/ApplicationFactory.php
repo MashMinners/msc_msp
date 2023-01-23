@@ -2,19 +2,14 @@
 
 namespace Engine\Core;
 
-use Application\Book;
 use Engine\Application;
 use League\Route\Router;
+use Psr\Container\ContainerInterface;
 
 class ApplicationFactory
 {
-    public function __construct(private IRouter $router){
-
-    }
-
-    public function create(Book $book){
-        $router = new Router();
-        return new Application($book, $this->router, $router);
+    public static function create(ContainerInterface $container, Router $router){
+        return new Application($container, $router);
     }
 
 }

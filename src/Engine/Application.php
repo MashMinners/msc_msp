@@ -2,23 +2,21 @@
 
 namespace Engine;
 
-use Application\Book;
-use Laminas\HttpHandlerRunner\Emitter\SapiStreamEmitter;
+use Engine\Router\IRouter;
+use League\Route\Router;
+use Psr\Container\ContainerInterface;
+use Psr\Http\Message\ServerRequestInterface;
 
 class Application
 {
-
-    public function __construct(private Book $book)
+    public function __construct(private ContainerInterface $container, private Router $router)
     {
-
+        require 'configs/routes.php';
     }
 
-    public function text(){
-        return $this->book->getText().'Book #2 text'.' Text from app <br>';
-    }
-
-    public function run($response){
-        $emitter = new SapiStreamEmitter();
+    public function run(ServerRequestInterface $request){
+        $response = $this->router->dispatch($request);
+        $emitter = $this->container->get('Emitter');
         $emitter->emit($response);
     }
 
