@@ -6,11 +6,9 @@ namespace Engine\Database;
 
 use PDO;
 
-class MySQLDbConnector
+class MySQLDbConnector implements IConnector
 {
     private static $_instance;
-
-    private static $_configs;
 
     private static $_options = [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -18,9 +16,7 @@ class MySQLDbConnector
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
 
-    private function __construct(){
-
-    }
+    private function __construct(){}
 
     public static function connect() : PDO
     {
@@ -38,5 +34,4 @@ class MySQLDbConnector
         }
         return self::$_instance;
     }
-
 }

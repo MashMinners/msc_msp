@@ -12,6 +12,7 @@ class Application
     public function __construct(private ContainerInterface $container, private IRouter $router)
     {
         require 'configs/routes.php';
+        require 'configs/middlewares.php';
     }
 
     /**
@@ -82,6 +83,22 @@ class Application
     private function options(string $path, $handler) : Route
     {
         return $this->router->options( $path, $handler);
+    }
+
+    /**
+     * @param string $middleware
+     * @return \League\Route\Middleware\MiddlewareAwareInterface
+     */
+    private function lazyMiddleware(string $middleware) {
+       return $this->router->lazyMiddleware($middleware);
+    }
+
+    /**
+     * @param array $middlewares
+     * @return \League\Route\Middleware\MiddlewareAwareInterface
+     */
+    private function lazyMiddlewares(array $middlewares) {
+        return $this->router->lazyMiddlewares($middlewares);
     }
 
     /**

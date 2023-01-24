@@ -10,23 +10,13 @@ class View
     {
         $layout = 'src/Application/Views/layout.php';
         $css = 'src/Application/Views/style.css';
-
         try {
-            $mpdf = new \Mpdf\Mpdf([
-                'mode' => 'utf-8',
-                'format' => 'A4'
-            ]);
             ob_start();
             include $layout;
-            //include $template;
             $content = ob_get_clean();
-            $mpdf->WriteHTML($content);
-            //$mpdf->Output();
         } catch (\Exception $e) {
             throw $e;
         }
-
         return $content;
     }
-
 }

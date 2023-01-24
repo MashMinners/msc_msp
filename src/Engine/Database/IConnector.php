@@ -2,7 +2,8 @@
 
 namespace Engine\Database;
 
-interface IMySQLConnector
+interface IConnector
 {
     public static function connect() : \PDO;
+
 }
