@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Application\Models;
 
+use Engine\Database\IConnector;
+
 class Model
 {
     private $_db;
 
-    public function __construct(\PDO $connector){
-        $this->_db = $connector;
+    public function __construct(IConnector $connector){
+        $this->_db = $connector::connect();
     }
 
     public function getData(string $code){

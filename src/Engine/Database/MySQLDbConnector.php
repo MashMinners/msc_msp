@@ -16,7 +16,7 @@ class MySQLDbConnector implements IConnector
         PDO::ATTR_EMULATE_PREPARES   => false,
     ];
 
-    private function __construct(){}
+    public function __construct(){}
 
     public static function connect() : PDO
     {
