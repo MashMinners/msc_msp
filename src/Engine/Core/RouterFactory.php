@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Engine\Router;
+namespace Engine\Core;
 
+use Engine\Router\LeagueRouterDecorator;
 use League\Route\Strategy\ApplicationStrategy;
 use Psr\Container\ContainerInterface;
 
